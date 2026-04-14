@@ -1,0 +1,40 @@
+# Core data manipulation
+pandas>=2.0          # DataFrames: loading, cleaning, transforming, and analyzing tabular data
+numpy>=1.26          # N-dimensional arrays and fast numerical computing (powers pandas and scikit-learn)
+
+# Visualization
+matplotlib>=3.8      # The foundational Python plotting library; fine-grained control over static charts
+seaborn>=0.13        # High-level statistical plots built on top of matplotlib (histograms, heatmaps, etc.)
+plotly>=5.18         # Interactive, web-based charts; great for exploratory analysis in notebooks
+
+# Machine learning
+scikit-learn>=1.4    # Regression, classification, clustering, preprocessing, and model evaluation
+xgboost>=2.0         # Gradient boosting framework; often the top performer on structured/tabular data
+lightgbm>=4.2        # Fast, memory-efficient gradient boosting; good alternative to XGBoost on large datasets
+
+# Statistics
+scipy>=1.12          # Scientific computing: hypothesis tests, probability distributions, optimization
+statsmodels>=0.14    # Statistical models (OLS, ARIMA, etc.) with detailed summaries and p-values
+
+# Database / SQL
+duckdb>=0.10         # In-process analytical database; run fast SQL directly on CSV/Parquet files in Python
+sqlalchemy>=2.0      # Database ORM and connection toolkit; connects Python to PostgreSQL, SQLite, etc.
+
+# HTTP / APIs
+requests>=2.31       # Simple HTTP library for calling REST APIs and downloading data from the web
+
+# Notebooks & reporting
+jupyter>=1.0         # Classic Jupyter Notebook interface
+ipykernel>=6.29      # Jupyter kernel for Python; required to run notebooks in Positron / VS Code
+jupyterlab>=4.1      # Modern web-based notebook IDE (alternative to classic Jupyter Notebook)
+nbformat>=5.9        # Read/write/validate .ipynb notebook files programmatically
+
+# Model explainability
+shap>=0.44           # SHAP values: explains individual predictions for any ML model
+
+# Experiment tracking (optional — comment out if not using)
+# mlflow>=2.11       # Tracks experiments, parameters, metrics, and artifacts; includes a model registry UI
+
+# Utilities
+python-dotenv>=1.0   # Loads environment variables from a .env file (keeps secrets out of source code)
+tqdm>=4.66           # Adds a progress bar to any Python loop or iterable
