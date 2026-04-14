@@ -1,0 +1,40 @@
+# Core data manipulation
+pandas>=2.0
+numpy>=1.26
+
+# Visualization
+matplotlib>=3.8
+seaborn>=0.13
+plotly>=5.18
+
+# Machine learning
+scikit-learn>=1.4
+xgboost>=2.0
+lightgbm>=4.2
+
+# Statistics
+scipy>=1.12
+statsmodels>=0.14
+
+# Database / SQL
+duckdb>=0.10
+sqlalchemy>=2.0
+
+# HTTP / APIs
+requests>=2.31
+
+# Notebooks & reporting
+jupyter>=1.0
+ipykernel>=6.29
+jupyterlab>=4.1
+nbformat>=5.9
+
+# Model explainability
+shap>=0.44
+
+# Experiment tracking (optional — comment out if not using)
+# mlflow>=2.11
+
+# Utilities
+python-dotenv>=1.0
+tqdm>=4.66
