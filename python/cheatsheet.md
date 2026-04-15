@@ -560,6 +560,113 @@ threshold = 0.3   # Lower threshold → more predicted positives → higher reca
 y_pred_custom = (y_prob >= threshold).astype(int)
 ```
 
+### 2.12 Worked Example: The "Train and Predict" Pattern
+
+This is the fundamental pattern that almost every sklearn question boils down to.
+Every sklearn model follows the exact same three-step API: **create → fit → predict**.
+
+**Step-by-step breakdown:**
+
+```
+Step 1: Pick a model class and create an instance of it.
+Step 2: Call .fit(X_train, y_train) — this trains the model on your data.
+Step 3: Call .predict(X_new) — this returns predictions for new/unseen data.
+```
+
+That's it. The model class changes, the parameters change, but those three
+steps are always the same.
+
+**Example question (typical format you will see):**
+
+You are given a function signature. The function receives training features,
+training labels, and new features to predict on. You must return predictions.
+
+```python
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+
+def train_and_predict(train_input_features, train_outputs, prediction_features):
+    """
+    :param train_input_features: 2D numpy array — each row is one sample,
+                                 each column is one feature
+    :param train_outputs:        1D numpy array — the correct label for each
+                                 row in train_input_features
+    :param prediction_features:  2D numpy array — new samples to classify
+    :returns:                    list or array of predicted labels
+    """
+    pass  # <-- You fill this in.
+
+# --- Test harness (given to you, don't change) ---
+iris = datasets.load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=0.3, random_state=0
+)
+y_pred = train_and_predict(X_train, y_train, X_test)
+if y_pred is not None:
+    print(metrics.accuracy_score(y_test, y_pred))
+```
+
+**Model answer — using an SVM classifier:**
+
+```python
+from sklearn.svm import SVC
+
+def train_and_predict(train_input_features, train_outputs, prediction_features):
+    # Step 1: Create the model
+    svm = SVC(kernel="linear", C=1.0, gamma="scale")
+
+    # Step 2: Train it — the model learns the relationship between
+    #         train_input_features (X) and train_outputs (y)
+    svm.fit(train_input_features, train_outputs)
+
+    # Step 3: Predict — use the trained model to classify new, unseen data
+    predictions = svm.predict(prediction_features)
+
+    return predictions.tolist()  # .tolist() converts numpy array → Python list
+```
+
+**Why this works:** `SVC` with a linear kernel draws straight-line decision
+boundaries between the three iris species. The iris dataset is clean and
+well-separated, so almost any classifier will score ≥ 0.95 accuracy here.
+
+**The same pattern with other models (any of these are valid answers):**
+
+```python
+# --- KNN ---
+from sklearn.neighbors import KNeighborsClassifier
+model = KNeighborsClassifier(n_neighbors=5)
+model.fit(train_input_features, train_outputs)
+return model.predict(prediction_features)
+
+# --- Decision Tree ---
+from sklearn.tree import DecisionTreeClassifier
+model = DecisionTreeClassifier(random_state=42)
+model.fit(train_input_features, train_outputs)
+return model.predict(prediction_features)
+
+# --- Logistic Regression ---
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression(max_iter=200, random_state=42)
+model.fit(train_input_features, train_outputs)
+return model.predict(prediction_features)
+
+# --- Random Forest ---
+from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(train_input_features, train_outputs)
+return model.predict(prediction_features)
+```
+
+Notice that every single one is the same three lines: **create → fit → predict**.
+The only thing that changes is the import and the constructor arguments.
+
+**Key things to remember under pressure:**
+- `.fit()` always takes **(features, labels)** — X first, y second.
+- `.predict()` takes **features only** — no labels (that's what you're predicting).
+- `.predict_proba()` gives probabilities instead of hard class labels (not all models support this — SVC needs `probability=True`).
+- If the question asks you to return a `list`, add `.tolist()` at the end.
+
 ---
 
 ## 3. SQL Reference
