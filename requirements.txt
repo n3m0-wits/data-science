@@ -1,4 +1,5 @@
 # Core data manipulation
+
 pandas>=2.0          # DataFrames: loading, cleaning, transforming, and analyzing tabular data
 numpy>=1.26          # N-dimensional arrays and fast numerical computing (powers pandas and scikit-learn)
 

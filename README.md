@@ -26,7 +26,7 @@ data-science/
    pip install -r requirements.txt
    ```
 3. In Positron, select the `.venv` interpreter so notebooks and scripts use it automatically.
-
+"Have you tried pip freeze > requirements.txt ?"
 ### Step 2 — Download learning materials into `resources/`
 
 The `resources/` folder is your single place for anything you clone or download from the internet — tutorials, sample databases, example repos, cheat sheets.
